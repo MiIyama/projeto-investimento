@@ -36,7 +36,7 @@ public class InvestimentoController {
 
     @GetMapping("/{id}")
     public ResponseEntity selecionarInvestimento(@PathVariable Integer id){
-        if (listaInvestimentos.size()>id){
+        if (listaInvestimentos.size()>=id){
             return ResponseEntity.ok(listaInvestimentos.get(id-1));
         }
 
@@ -45,12 +45,12 @@ public class InvestimentoController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity deletarInvestimento(@PathVariable Integer id){
-        if (listaInvestimentos.size()<id){
-            return ResponseEntity.notFound().build();
+        if (listaInvestimentos.size()>=id){
+            listaInvestimentos.remove(id - 1);
+            return ResponseEntity.ok().build();
         }
-        listaInvestimentos.remove(id - 1);
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.status(404).build();
     }
 
     @GetMapping("/total")

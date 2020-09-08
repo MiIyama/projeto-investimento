@@ -1,8 +1,8 @@
 package br.com.iyama.projetoinvestimento;
 
-public class JurosSimples extends Juros{
+public class InvestimentoJurosSimples extends Investimento {
 
-    public JurosSimples(String nome, Double valorPresente, Integer prazo, Double taxaJuros) {
+    public InvestimentoJurosSimples(String nome, Double valorPresente, Integer prazo, Double taxaJuros) {
         super(nome, valorPresente, prazo, taxaJuros);
     }
 
@@ -15,6 +15,6 @@ public class JurosSimples extends Juros{
 
     @Override
     public String toString() {
-        return "JurosSimples: " + super.toString()+", ValorFuturo=" + getCalculaValorFuturo() + '\'';
+        return "InvestimentoJurosCompostos: " + super.toString()+", ValorFuturo=" + getCalculaValorFuturo() + '\'';
     }
 }

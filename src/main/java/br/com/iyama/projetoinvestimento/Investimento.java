@@ -1,12 +1,12 @@
 package br.com.iyama.projetoinvestimento;
 
-public abstract class Juros {
+public abstract class Investimento {
     private String nome;
     private Double valorPresente;
     private Integer prazo;
     private Double taxaJuros;
 
-    public Juros(String nome, Double valorPresente, Integer prazo, Double taxaJuros) {
+    public Investimento(String nome, Double valorPresente, Integer prazo, Double taxaJuros) {
         this.nome = nome;
         this.valorPresente = valorPresente;
         this.prazo = prazo;
@@ -49,7 +49,7 @@ public abstract class Juros {
 
     @Override
     public String toString() {
-        return "Juros:" +
+        return "Investimento:" +
                 "nome='" + nome + '\'' +
                 ", valorPresente=" + valorPresente +
                 ", prazo=" + prazo +

@@ -1,10 +1,18 @@
-package br.com.iyama.projetoinvestimento;
+package br.com.iyama.projetoinvestimento.dominios;
 
+
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public abstract class Investimento {
     private String nome;
     private Double valorPresente;
     private Integer prazo;
     private Double taxaJuros;
+
+    public Investimento() {
+
+    }
 
     public Investimento(String nome, Double valorPresente, Integer prazo, Double taxaJuros) {
         this.nome = nome;
@@ -12,6 +20,8 @@ public abstract class Investimento {
         this.prazo = prazo;
         this.taxaJuros = taxaJuros;
     }
+
+
 
     public abstract Double getCalculaValorFuturo();
 

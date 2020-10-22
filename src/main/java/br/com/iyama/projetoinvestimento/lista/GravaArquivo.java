@@ -12,60 +12,69 @@ import java.util.FormatterClosedException;
 
 public class GravaArquivo {
 
+    String header = String.format("%s;%s;%s;%s;%s;%n", "Nome", "Valor Presente", "Prazo", "TaxaJuros", "Valor Futuro");
+
+    public static String txt(ListaObj<InvestimentoJurosSimples> lista, ListaObj<InvestimentoJurosCompostos> lista2) {
+        Date dataDeHoje = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+
+        String conteudo = String.format("00INVESTIMENTOS2020%s01%n",formatter.format(dataDeHoje));
 
 
-    public static String txt(ListaObj<InvestimentoJurosSimples> lista,ListaObj<InvestimentoJurosCompostos> lista2){
-        return"Arquivo txt";
-
-    }
-
-
-    public static String csv( ListaObj<InvestimentoJurosSimples> lista,ListaObj<InvestimentoJurosCompostos> lista2){
-        String arquivo = "";
-        String corpoSimples = "";
-        String corpoComposto = "";
-        String trailer = "";
-        String header = String.format("%s;%s;%s;%s;%s;%n","Nome","Valor Presente","Prazo","TaxaJuros","Valor Futuro");
 
         for (int i = 0; i < lista.getTamanho(); i++) {
             InvestimentoJurosSimples listaSimples = lista.getElemento(i);
-            corpoSimples += String.format("%s;%04f;%-20d;%-15f;%04f;%n",
+            conteudo += String.format("02%-50s%9.2f%5d%5.2f%17.2f%n",
                     listaSimples.getNome(),
                     listaSimples.getValorPresente(),
                     listaSimples.getPrazo(),
                     listaSimples.getTaxaJuros(),
                     listaSimples.getCalculaValorFuturo());
-
-//            private String nome;
-//            private Double valorPresente;
-//            private Integer prazo;
-//            private Double taxaJuros;
+        }
+        for (int i = 0; i < lista.getTamanho(); i++) {
+            InvestimentoJurosCompostos listaComposta = lista2.getElemento(i);
+            conteudo += String.format("02%-50s%9.2f%5d%5.2f%17.2f%n",
+                    listaComposta.getNome(),
+                    listaComposta.getValorPresente(),
+                    listaComposta.getPrazo(),
+                    listaComposta.getTaxaJuros(),
+                    listaComposta.getCalculaValorFuturo());
         }
 
-        for (int i = 0; i < lista2.getTamanho(); i++) {
-            InvestimentoJurosCompostos listaCompostos = lista2.getElemento(i);
-            corpoSimples += String.format("%s;%f;%-20d;%-15f;%.2f;%n",
-                    listaCompostos.getNome(),
-                    listaCompostos.getValorPresente(),
-                    listaCompostos.getPrazo(),
-                    listaCompostos.getTaxaJuros(),
-                    listaCompostos.getCalculaValorFuturo());
+       conteudo +=  String.format("01%05d",(lista.getTamanho()+lista2.getTamanho()));
 
-//
-        }
-
-
-        arquivo += header;
-        arquivo +=corpoSimples;
-        arquivo +=corpoComposto;
-
-        return arquivo;
+        return conteudo;
 
 
 
     }
 
 
+    public static String csv(ListaObj<InvestimentoJurosSimples> lista, ListaObj<InvestimentoJurosCompostos> lista2) {
+        String conteudo = String.format("%s;%s;%s;%s;%s%n", "Nome", "Valor Presente", "Prazo", "TaxaJuros", "Valor Futuro");
+        ;
+
+        for (int i = 0; i < lista.getTamanho(); i++) {
+            InvestimentoJurosSimples listaSimples = lista.getElemento(i);
+            conteudo += String.format("%s;%f;%d;%f;%.2f;%n",
+                    listaSimples.getNome(),
+                    listaSimples.getValorPresente(),
+                    listaSimples.getPrazo(),
+                    listaSimples.getTaxaJuros(),
+                    listaSimples.getCalculaValorFuturo());
+        }
+        for (int i = 0; i < lista.getTamanho(); i++) {
+            InvestimentoJurosCompostos listaComposta = lista2.getElemento(i);
+            conteudo += String.format("%s;%f;%d;%f;%.2f;%n",
+                    listaComposta.getNome(),
+                    listaComposta.getValorPresente(),
+                    listaComposta.getPrazo(),
+                    listaComposta.getTaxaJuros(),
+                    listaComposta.getCalculaValorFuturo());
+        }
+
+        return conteudo;
+    }
 
 
 }

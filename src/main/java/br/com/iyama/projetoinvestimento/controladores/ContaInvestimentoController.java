@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/banco")
-public class ContaInvestimentoController {
+public class   ContaInvestimentoController {
     @Autowired
     private InvestimentoCompostosRepository repositoryComposto;
 

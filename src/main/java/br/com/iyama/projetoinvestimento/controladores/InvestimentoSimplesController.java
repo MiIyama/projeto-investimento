@@ -7,8 +7,6 @@ import br.com.iyama.projetoinvestimento.repositorios.InvestimentoSimplesReposito
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.persistence.Entity;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +45,17 @@ public class InvestimentoSimplesController {
         return ResponseEntity.of(investimentoOptional);
     }
 
+    @GetMapping("/arquivo")
+    public ResponseEntity getArquivo(){
 
+
+        if (repository.count()>0) {
+            return ResponseEntity.ok(repository.findAll());
+        }else{
+            return ResponseEntity.noContent().build();
+        }
+
+    }
 
 
 

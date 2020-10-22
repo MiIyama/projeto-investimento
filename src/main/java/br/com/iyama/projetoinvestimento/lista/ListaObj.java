@@ -1,4 +1,8 @@
-package br.com.iyama.projetoinvestimento.dominios;
+package br.com.iyama.projetoinvestimento.lista;
+
+import br.com.iyama.projetoinvestimento.dominios.InvestimentoJurosCompostos;
+
+import java.util.List;
 
 public class ListaObj<T> {
     // Atributos
@@ -98,5 +102,9 @@ public class ListaObj<T> {
     public void limpa() {
         nroElem = 0;
     }
+
+    public void adicionaLista(List<T> all) {
+    }
+
 
 }

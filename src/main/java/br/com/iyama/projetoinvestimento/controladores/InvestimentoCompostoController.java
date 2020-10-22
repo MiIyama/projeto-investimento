@@ -40,7 +40,7 @@ public class InvestimentoCompostoController {
 
     @GetMapping("/{id}")
     public ResponseEntity selecionar(@PathVariable Integer id){
-        Optional<InvestimentoJurosCompostos> investimentoOptional = repository.findById(id);//-1
+        Optional<InvestimentoJurosCompostos> investimentoOptional = repository.findById(id);
 
        return ResponseEntity.of(investimentoOptional);
     }

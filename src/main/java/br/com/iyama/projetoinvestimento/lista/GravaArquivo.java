@@ -3,12 +3,10 @@ package br.com.iyama.projetoinvestimento.lista;
 import br.com.iyama.projetoinvestimento.dominios.InvestimentoJurosCompostos;
 import br.com.iyama.projetoinvestimento.dominios.InvestimentoJurosSimples;
 
-import java.io.FileWriter;
-import java.io.IOException;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Formatter;
-import java.util.FormatterClosedException;
+
 
 public class GravaArquivo {
 
@@ -24,7 +22,7 @@ public class GravaArquivo {
 
         for (int i = 0; i < lista.getTamanho(); i++) {
             InvestimentoJurosSimples listaSimples = lista.getElemento(i);
-            conteudo += String.format("02%-50s%9.2f%5d%5.2f%17.2f%n",
+            conteudo += String.format("01%-50s%9.2f%5d%5.2f%17.2f%n",
                     listaSimples.getNome(),
                     listaSimples.getValorPresente(),
                     listaSimples.getPrazo(),
@@ -33,7 +31,7 @@ public class GravaArquivo {
         }
         for (int i = 0; i < lista.getTamanho(); i++) {
             InvestimentoJurosCompostos listaComposta = lista2.getElemento(i);
-            conteudo += String.format("02%-50s%9.2f%5d%5.2f%17.2f%n",
+            conteudo += String.format("01%-50s%9.2f%5d%5.2f%17.2f%n",
                     listaComposta.getNome(),
                     listaComposta.getValorPresente(),
                     listaComposta.getPrazo(),
@@ -41,7 +39,7 @@ public class GravaArquivo {
                     listaComposta.getCalculaValorFuturo());
         }
 
-       conteudo +=  String.format("01%05d",(lista.getTamanho()+lista2.getTamanho()));
+       conteudo +=  String.format("03%05d",(lista.getTamanho()+lista2.getTamanho()));
 
         return conteudo;
 

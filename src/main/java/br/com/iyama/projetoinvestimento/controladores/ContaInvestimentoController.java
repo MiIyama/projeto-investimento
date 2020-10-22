@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/banco")
+@RequestMapping("/conta")
 public class   ContaInvestimentoController {
     @Autowired
     private InvestimentoCompostosRepository repositoryComposto;
@@ -29,7 +29,7 @@ public class   ContaInvestimentoController {
     private ResponseEntity txt(){
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "attachment; filename=relatorio.txt");
+        headers.add("Content-Disposition", "attachment; filename=investimento.txt");
 
         ListaObj<InvestimentoJurosSimples> listaSimples = converterListaObjSimples(repositorySimples.findAll());
         ListaObj<InvestimentoJurosCompostos> listaComposto = converterListaObjComposto(repositoryComposto.findAll());
@@ -41,7 +41,7 @@ public class   ContaInvestimentoController {
     private ResponseEntity csv(){
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "attachment; filename=relatorio.csv");
+        headers.add("Content-Disposition", "attachment; filename=investimento.csv");
 
         ListaObj<InvestimentoJurosSimples> listaSimples = converterListaObjSimples(repositorySimples.findAll());
         ListaObj<InvestimentoJurosCompostos> listaComposto = converterListaObjComposto(repositoryComposto.findAll());
